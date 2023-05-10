@@ -1,0 +1,7 @@
+.work-list {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 20px;
+    row-gap: 50px;
+    padding: 100px 340px;
+}
