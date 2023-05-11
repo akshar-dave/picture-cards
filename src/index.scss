@@ -4,4 +4,25 @@
     column-gap: 20px;
     row-gap: 50px;
     padding: 100px 340px;
+
+    @media (max-width: 1500px) {
+        padding: 100px 200px;
+    }
+
+    @media (max-width: 1400px) {
+        padding: 100px 160px;
+    }
+
+    @media (max-width: 1200px) {
+        padding: 100px 80px;
+    }
+
+    @media (max-width: 1000px) {
+        padding: 100px 40px;
+    }
+
+    @media (max-width: 800px) {
+        padding: 100px 30px;
+        grid-template-columns: repeat(4, 1fr);
+    }
 }

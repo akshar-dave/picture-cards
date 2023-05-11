@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 import './PictureCard.scss';
 
 const PictureCard = (props) => {
     const { name, images, href } = props;
+
+    const isMobile = useMediaQuery('(max-width: 1000px)');
 
     const clock = useRef();
     const clockTickDuration = 0.6;
@@ -14,12 +17,17 @@ const PictureCard = (props) => {
         setIndex(current => (current + 1) % images.length);
     }
 
-    const handleHover = () => {
+    const startSlideshow = () => {
         setIsHovering(current => true);
     }
 
-    const handleHoverEnd = () => {
+    const stopSlideshow = () => {
         setIsHovering(current => false);
+    }
+
+    const handleViewportEnter = () => {
+        if (!isMobile) return;
+        startSlideshow();
     }
 
     useEffect(() => {
@@ -36,24 +44,26 @@ const PictureCard = (props) => {
     return (
         <motion.a
             className="picture-card"
-            whileHover={handleHover}
-            onHoverEnd={handleHoverEnd}
+            whileHover={startSlideshow}
+            onHoverEnd={stopSlideshow}
             href={href}
         >
             <h3 className='picture-card-title'>{name}</h3>
 
             <div className="picture-card-slideshow">
                 {images.map((src, i) => (
-                    <div className="picture-card-slide"
+                    <motion.div className="picture-card-slide"
                         key={i}
                         style={{ visibility: index === i ? 'visible' : 'hidden' }}
+                        onViewportEnter={handleViewportEnter}
+                        onViewportLeave={stopSlideshow}
                     >
                         <img
                             src={src}
                             draggable='false'
                             loading='lazy'
                         />
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </motion.a>

@@ -4,7 +4,6 @@ import PictureCard from './components/PictureCard';
 import workList from './lib/workList';
 
 function App() {
-
   return (
     <main>
       <div className="work-list">
@@ -17,7 +16,7 @@ function App() {
           />
         ))}
 
-        <p>We prompt to contact us with a CTA after a few projects here.</p>
+        <div className='placeholder'>We prompt to contact us with a CTA after a few projects here.</div>
 
         {workList.slice(4, workList.length).map((workItem, i) => (
           <PictureCard
