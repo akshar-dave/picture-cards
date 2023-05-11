@@ -9,7 +9,7 @@ const PictureCard = (props) => {
     const isMobile = useMediaQuery('(max-width: 1000px)');
 
     const clock = useRef();
-    const clockTickDuration = 0.6;
+    const clockTickDuration = isMobile ? 1 : 0.6;
     const [index, setIndex] = useState(0);
     const [isHovering, setIsHovering] = useState(false);
 
